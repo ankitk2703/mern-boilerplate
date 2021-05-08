@@ -5,6 +5,10 @@ const router = express.Router()
 // import controller 
 const {signup} = require('../controllers/auth')
 
-router.get("/signup", signup);
+//import validators
+
+const {userSignupValidator} = require('../validators/auth')
+const {runValidaton} = require('../validators/index')
+router.post("/signup", userSignupValidator, runValidaton,signup);
 
 module.exports = router
