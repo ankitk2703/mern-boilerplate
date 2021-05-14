@@ -3,12 +3,14 @@ const router = express.Router()
 
 
 // import controller 
-const {signup} = require('../controllers/auth')
+const { signup, signin, accountActivation } = require("../controllers/auth");
 
 //import validators
 
-const {userSignupValidator} = require('../validators/auth')
+const {userSignupValidator,userSigninValidator} = require('../validators/auth')
 const {runValidaton} = require('../validators/index')
 router.post("/signup", userSignupValidator, runValidaton,signup);
+router.post("/account-activation", accountActivation);
+router.post("/signin", userSigninValidator, runValidaton, signin);
 
 module.exports = router
